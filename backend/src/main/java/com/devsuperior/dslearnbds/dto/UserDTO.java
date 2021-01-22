@@ -2,6 +2,9 @@ package com.devsuperior.dslearnbds.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import com.devsuperior.dslearnbds.entities.User;
 
 public class UserDTO implements Serializable {
@@ -9,7 +12,11 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@NotBlank(message= "Campo obrigatório")
 	private String name;
+	
+	@Email(message = "Favor entrar com e-mail válido")
 	private String email;
 	
 	public UserDTO() {

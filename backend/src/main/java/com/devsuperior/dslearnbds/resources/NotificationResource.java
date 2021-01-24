@@ -22,6 +22,7 @@ public class NotificationResource {
 	@GetMapping
 	public ResponseEntity<Page<NotificationDTO>> findAll(
 			
+			@RequestParam(value = "unreadyOnly", defaultValue = "false") Boolean unreadyOnly,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "12") Integer size
 			
@@ -29,7 +30,7 @@ public class NotificationResource {
 
 		PageRequest pageRequest = PageRequest.of(page, size);
 		
-		Page<NotificationDTO> list = service.notificationsForCurrentUser(pageRequest);
+		Page<NotificationDTO> list = service.notificationsForCurrentUser(unreadyOnly, pageRequest);
 		
 		return ResponseEntity.ok().body(list);
 	}
